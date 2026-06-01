@@ -1,0 +1,73 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidFeedback(data) {
+      return data.keys().hasAll(['feedbackId', 'userId', 'rating', 'comment', 'submittedAt']) &&
+             data.keys().size() <= 6 &&
+             data.feedbackId == request.resource.id &&
+             ((isSignedIn() && data.userId == request.auth.uid) || (!isSignedIn() && data.userId == 'anonymous')) &&
+             data.rating is int &&
+             data.rating >= 1 &&
+             data.rating <= 5 &&
+             data.comment is string &&
+             data.comment.size() <= 5000 &&
+             data.submittedAt is string;
+    }
+
+    // --- Collections ---
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) && isValidId(userId);
+
+      match /assessments/{assessmentId} {
+        allow get: if isOwner(userId) && isValidId(userId) && isValidId(assessmentId);
+        allow list: if isOwner(userId) && isValidId(userId);
+        allow write: if isOwner(userId) && isValidId(userId) && isValidId(assessmentId);
+      }
+
+      match /predictions/{predictionId} {
+        allow get: if isOwner(userId) && isValidId(userId) && isValidId(predictionId);
+        allow list: if isOwner(userId) && isValidId(userId);
+        allow write: if isOwner(userId) && isValidId(userId) && isValidId(predictionId);
+      }
+
+      match /reports/{reportId} {
+        allow get: if isOwner(userId) && isValidId(userId) && isValidId(reportId);
+        allow list: if isOwner(userId) && isValidId(userId);
+        allow write: if isOwner(userId) && isValidId(userId) && isValidId(reportId);
+      }
+    }
+
+    match /reports/{reportId} {
+      allow read, delete: if isSignedIn() && resource.data.uid == request.auth.uid && isValidId(reportId);
+      allow create: if isSignedIn() && incoming().uid == request.auth.uid && isValidId(reportId);
+      allow update: if isSignedIn() && existing().uid == request.auth.uid && incoming().uid == request.auth.uid && isValidId(reportId);
+    }
+
+    match /feedback/{feedbackId} {
+      allow create: if isValidId(feedbackId) && isValidFeedback(incoming());
+      allow read, update, delete: if false; 
+    }
+  }
+}

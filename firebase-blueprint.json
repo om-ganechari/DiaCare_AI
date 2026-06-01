@@ -1,0 +1,108 @@
+{
+  "entities": {
+    "user": {
+      "title": "User Profile",
+      "description": "Stores user bio, diagnostic preferences, and clinical customization features.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The firebase auth user UID" },
+        "name": { "type": "string", "description": "Display name of the user" },
+        "email": { "type": "string", "format": "email", "description": "User email address" },
+        "language": { "type": "string", "enum": ["en", "hi", "mr"], "description": "Preferred interface language" },
+        "age": { "type": "integer", "description": "Age of the user" },
+        "gender": { "type": "string", "description": "Gender of the user" },
+        "avatarUrl": { "type": "string", "description": "Profile picture URL" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Account registration timestamp" }
+      },
+      "required": ["userId", "email"]
+    },
+    "assessment": {
+      "title": "Diabetes Risk Questionnaire",
+      "description": "Multi-step risk assessment quiz completed by users.",
+      "type": "object",
+      "properties": {
+        "assessmentId": { "type": "string", "description": "Unique ID for this assessment" },
+        "userId": { "type": "string", "description": "The user who took the test" },
+        "answers": { "type": "object", "description": "Questionnaire answers (lifestyle, symptoms, family history)" },
+        "riskScore": { "type": "integer", "description": "Calculated raw risk score" },
+        "riskLevel": { "type": "string", "enum": ["LOW", "MODERATE", "HIGH"], "description": "Identified risk bracket" },
+        "completedAt": { "type": "string", "format": "date-time", "description": "When the questionnaire was completed" }
+      },
+      "required": ["assessmentId", "userId", "answers", "riskScore", "riskLevel", "completedAt"]
+    },
+    "prediction": {
+      "title": "Diabetes Clinical Prediction",
+      "description": "Diabetes prediction results generated using full-stack metabolic data inputs.",
+      "type": "object",
+      "properties": {
+        "predictionId": { "type": "string", "description": "Unique prediction ID" },
+        "userId": { "type": "string", "description": "The user seeking prediction analysis" },
+        "pregnancies": { "type": "integer", "description": "Number of pregnancies" },
+        "glucose": { "type": "integer", "description": "Plasma glucose concentration code" },
+        "bloodPressure": { "type": "integer", "description": "Diastolic blood pressure" },
+        "skinThickness": { "type": "integer", "description": "Triceps skin fold thickness" },
+        "insulin": { "type": "integer", "description": "2-Hour serum insulin" },
+        "bmi": { "type": "number", "description": "Body mass index value" },
+        "pedigree": { "type": "number", "description": "Diabetes pedigree function coefficient" },
+        "age": { "type": "integer", "description": "User age in years" },
+        "riskPercentage": { "type": "integer", "description": "Risk percentage derived by DiaCare AI" },
+        "riskLevel": { "type": "string", "enum": ["LOW", "MODERATE", "HIGH"], "description": "Risk category mapped to health bounds" },
+        "insights": { "type": "string", "description": "AI-generated diagnostic clinical insights (personalized advice)" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Prediction generation timing" }
+      },
+      "required": ["predictionId", "userId", "glucose", "bmi", "age", "riskPercentage", "riskLevel", "createdAt"]
+    },
+    "medicalReport": {
+      "title": "Uploaded Medical Report Analysis",
+      "description": "Medical report analyzer outcomes parsing scanned reports/PDF data.",
+      "type": "object",
+      "properties": {
+        "reportId": { "type": "string", "description": "Unique report reference" },
+        "userId": { "type": "string", "description": "Owner of the uploaded report" },
+        "fileName": { "type": "string", "description": "Original file name" },
+        "fileType": { "type": "string", "description": "Uploaded file mime-type" },
+        "fileSize": { "type": "integer", "description": "Size in bytes" },
+        "extractedData": { "type": "object", "description": "Values extracted by DiaCare AI OCR engine" },
+        "insights": { "type": "string", "description": "Diagnostic and triage recommendations based on the report data" },
+        "uploadedAt": { "type": "string", "format": "date-time", "description": "Upload timestamp" }
+      },
+      "required": ["reportId", "userId", "fileName", "uploadedAt"]
+    },
+    "feedback": {
+      "title": "User Diagnostic Feedback",
+      "description": "User feedback regarding the system and diagnostic predictions.",
+      "type": "object",
+      "properties": {
+        "feedbackId": { "type": "string", "description": "Unique user feedback ID" },
+        "userId": { "type": "string", "description": "ID of the user who submitted feedback" },
+        "userName": { "type": "string", "description": "Optional name of the user" },
+        "rating": { "type": "integer", "description": "Rating value out of 5" },
+        "comment": { "type": "string", "description": "Detailed text feedback" },
+        "submittedAt": { "type": "string", "format": "date-time", "description": "When feedback was submitted" }
+      },
+      "required": ["feedbackId", "userId", "rating", "comment", "submittedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "Root user database configuration paths."
+    },
+    "/users/{userId}/assessments/{assessmentId}": {
+      "schema": "assessment",
+      "description": "User risk assessment documents."
+    },
+    "/users/{userId}/predictions/{predictionId}": {
+      "schema": "prediction",
+      "description": "Metabolic prediction entries."
+    },
+    "/users/{userId}/reports/{reportId}": {
+      "schema": "medicalReport",
+      "description": "Clinical upload storage logs."
+    },
+    "/feedback/{feedbackId}": {
+      "schema": "feedback",
+      "description": "Public or private system-wide diagnostic feedback logs."
+    }
+  }
+}

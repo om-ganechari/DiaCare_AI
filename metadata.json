@@ -1,0 +1,6 @@
+{
+  "name": "DiaCare AI",
+  "description": "Metabolic Intelligence & Clinical Diabetes Risk Assessment Report Portal with AI Assistant chat.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

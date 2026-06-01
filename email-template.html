@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiaCare AI - Health Assessment Report</title>
+  <style>
+    body {
+      width: 100% !important;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #0b0f19;
+      color: #f1f5f9;
+    }
+    table {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+    img {
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+      display: block;
+    }
+    .badge-high {
+      background-color: #ef4444;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .badge-moderate {
+      background-color: #f59e0b;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .badge-low {
+      background-color: #10b981;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    @media only screen and (max-width: 600px) {
+      .container {
+        width: 100% !important;
+        padding: 5px !important;
+      }
+      .content {
+        padding: 20px 15px !important;
+      }
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; background-color: #050816; color: #f1f5f9;">
+
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #050816; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        <!-- Main Container -->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="container" style="max-width: 640px; background-color: #0d1225; border-radius: 20px; overflow: hidden; border: 1px solid #1e293b; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          
+          <!-- Healthcare Header -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); padding: 35px 30px; border-bottom: 2px solid #22d3ee; color: #ffffff; text-align: left;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td>
+                    <span style="background-color: rgba(34, 211, 238, 0.15); border: 1px solid rgba(34, 211, 238, 0.3); border-radius: 8px; padding: 6px 12px; font-weight: bold; font-size: 15px; letter-spacing: 0.5px; color: #22d3ee; display: inline-block;">
+                      🔬 DiaCare AI
+                    </span>
+                  </td>
+                  <td align="right" style="font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: #a5f3fc;">
+                    CLINICAL METRIC ANALYSIS
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="padding-top: 25px;">
+                    <div style="font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; color: #22d3ee; margin-bottom: 5px;">
+                      DIA CARE AI HEALTH ASSESSMENT REPORT
+                    </div>
+                    <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.2; color: #ffffff;">
+                      Metabolic Intelligence Summary
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Profile Metadata Panel -->
+          <tr>
+            <td style="padding: 20px 30px; background-color: #090d1e; border-bottom: 1px solid #1e293b;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                  <td width="50%" style="vertical-align: top;">
+                    <div style="font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 3px;">Patient Name</div>
+                    <div style="font-size: 15px; font-weight: bold; color: #f1f5f9;">{{user_name}}</div>
+                    <div style="font-size: 12px; color: #94a3b8; margin-top: 2px;">{{user_email}}</div>
+                  </td>
+                  <td width="50%" style="vertical-align: top;" align="right">
+                    <div style="font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 3px;">Assessment Date</div>
+                    <div style="font-size: 14px; font-weight: bold; color: #e2e8f0;">{{date}}</div>
+                    <div style="font-size: 11px; color: #10b981; font-weight: bold; margin-top: 3px;">● Verified Telemetry Matrix</div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Content Details -->
+          <tr>
+            <td class="content" style="padding: 30px; text-align: left;">
+              
+              <!-- Core Vital Index Scores -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 25px;">
+                <tr>
+                  <td width="48%" style="background-color: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 20px; text-align: center; vertical-align: middle;">
+                    <span style="font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; display: block; margin-bottom: 6px;">Evaluated Risk Status</span>
+                    <div style="font-size: 20px; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;">
+                      {{risk_category}}
+                    </div>
+                    <span style="font-size: 12px; font-weight: bold; color: #f59e0b;">{{risk_percentage}}% Score</span>
+                  </td>
+                  <td width="4%" style="font-size: 1px; line-height: 1px;">&nbsp;</td>
+                  <td width="48%" style="background-color: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 20px; text-align: center; vertical-align: middle;">
+                    <span style="font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; display: block; margin-bottom: 6px;">Clinical Health Score</span>
+                    <div style="font-size: 26px; font-weight: 800; color: #10b981; margin-bottom: 2px;">
+                      {{health_score}} <span style="font-size: 14px; font-weight: normal; color: #94a3b8;">/ 100</span>
+                    </div>
+                    <span style="font-size: 11px; color: #94a3b8;">Diabetes Status: <b>{{diabetes_status}}</b></span>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- AI Medical Insights Summary block -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #111827; border: 1px solid #1f2937; border-radius: 12px; margin-bottom: 25px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 14px 20px; background-color: #1e293b; color: #22d3ee; font-weight: bold; font-size: 13px; letter-spacing: 0.5px; border-bottom: 1px solid #1f2937;">
+                    🤖 AI Health Analysis Summary
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 20px; font-size: 13.5px; line-height: 1.6; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
+                    <div style="white-space: pre-line; word-break: break-word;">{{ai_summary}}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Recommendations Panel -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #111827; border: 1px solid #1f2937; border-radius: 12px; margin-bottom: 25px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 14px 20px; background-color: #1e293b; color: #c084fc; font-weight: bold; font-size: 13px; letter-spacing: 0.5px; border-bottom: 1px solid #1f2937;">
+                    📋 Therapeutic & Lifestyle Recommendations
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 20px; font-size: 13.5px; line-height: 1.6; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
+                    <div style="white-space: pre-line; word-break: break-word;">{{recommendations}}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Suggested Medical Tests Table -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #111827; border: 1px solid #1f2937; border-radius: 12px; margin-bottom: 30px; overflow: hidden;">
+                <tr>
+                  <td style="padding: 14px 20px; background-color: #1e293b; color: #f472b6; font-weight: bold; font-size: 13px; letter-spacing: 0.5px; border-bottom: 1px solid #1f2937;">
+                    🩸 Suggested Medical Tests & Verification Target Coordinates
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 20px;">
+                    <div style="white-space: pre-line; word-break: break-word; font-size: 13.5px; line-height: 1.6; color: #e2e8f0;">{{suggested_tests}}</div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- PDF Report Download Button -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 15px;">
+                <tr>
+                  <td align="center">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center" style="border-radius: 12px; background-color: #06b6d4;">
+                          <a href="{{pdf_url}}" target="_blank" style="padding: 14px 30px; border-radius: 12px; display: inline-block; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: bold; color: #ffffff; text-decoration: none; text-transform: uppercase; letter-spacing: 1px;">
+                            📥 Download Medical PDF Report
+                          </td>
+                        </tr>
+                      </table>
+                      <div style="margin-top: 10px; font-size: 11px; color: #64748b; text-align: center;">
+                        PDF URL: <a href="{{pdf_url}}" target="_blank" style="color: #22d3ee; text-decoration: none;">{{pdf_url}}</a>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+            </td>
+          </tr>
+
+          <!-- Unified Professional Footer -->
+          <tr>
+            <td style="background-color: #0d0e14; padding: 40px; text-align: center; color: #64748b; font-size: 11.5px; border-top: 1px solid #1e293b;">
+              <div style="font-weight: bold; font-size: 15px; color: #ffffff; letter-spacing: 0.5px; margin-bottom: 5px;">
+                DiaCare AI
+              </div>
+              <div style="font-size: 12px; color: #3b82f6; margin-bottom: 18px; font-weight: 500;">
+                Clinical Decision Support Matrix Suite3.2
+              </div>
+              <p style="margin: 0; line-height: 1.6; max-width: 500px; margin: 0 auto;">
+                © 2026 DiaCare AI Healthcare Technologies Inc. Secure end-to-end telemetry encryption. This evaluation is compiled through advanced diabetes preventative insights and does not substitute professional endorcinology evaluation.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
