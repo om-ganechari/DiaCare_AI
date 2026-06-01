@@ -240,4 +240,4 @@ Project Name: **DiaCare AI**
 
 ## publish link 
 here you can access our application 
-**link**: https://diacare-ai-372630463632.asia-southeast1.run.app
+**link**: https://diacare-ai-gnbv.onrender.com/
