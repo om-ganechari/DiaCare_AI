@@ -1,10 +1,8 @@
 {
-  "projectId": "pro-dialect-fmln4",
-  "appId": "1:372630463632:web:c058cf435585148be9a415",
-  "apiKey": "AIzaSyDDInNaFRpCIwP581kslhKhMr4SJTX22rw",
-  "authDomain": "pro-dialect-fmln4.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-6e0e9710-b584-4f57-8353-258aad477251",
-  "storageBucket": "pro-dialect-fmln4.firebasestorage.app",
-  "messagingSenderId": "372630463632",
-  "measurementId": ""
+  "apiKey": "AIzaSyC3mFxotAHhnh_zRzbQmJMhOZhuQn2BSLk",
+  "authDomain": "diacareai-aa6f3.firebaseapp.com",
+  "projectId": "diacareai-aa6f3",
+  "storageBucket": "diacareai-aa6f3.firebasestorage.app",
+  "messagingSenderId": "293062783147",
+  "appId": "1:293062783147:web:e833d8a2e9ea0dd7b907ee"
 }
